@@ -35,12 +35,12 @@ const promptUser = () => {
       {
         type: 'input',
         name: 'install',
-        message: 'Provide installation instructions. (Required)',
+        message: 'Provide installation instructions for your project. (Required)',
         validate: installInput => {
           if (installInput) {
             return true;
           } else {
-            console.log('You need to enter installation instructions!');
+            console.log('You need to enter project installation instructions!');
             return false;
           }
         }
@@ -48,15 +48,47 @@ const promptUser = () => {
       {
         type: 'input',
         name: 'usage',
-        message: 'Provide usage instructions. (Required)',
+        message: 'Provide usage instructions for your project. (Required)',
         validate: usageInput => {
           if (usageInput) {
             return true;
           } else {
-            console.log('You need to enter usage instructions!');
+            console.log('You need to enter project usage instructions!');
             return false;
           }
         }
+      },
+      {
+        type: 'input',
+        name: 'contributing',
+        message: 'Provide instructions for contributing to this project. (Required)',
+        validate: contributingInput => {
+          if (contributingInput) {
+            return true;
+          } else {
+            console.log('You need to enter project contribution instructions!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'tests',
+        message: 'Provide testing instructions for this project. (Required)',
+        validate: testsInput => {
+          if (testsInput) {
+            return true;
+          } else {
+            console.log('You need to enter project testins instructions!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'checkbox',
+        name: 'license',
+        message: 'Choose and open source license.',
+        choices: ['community-preferred', 'MIT', 'GNU GPLv3', 'GNU AGPLv3', 'GNU LGPLv3', 'Mozilla Public License', 'Apache License 2.0', 'Boost Software License 1.0', 'the Unilicense']
       },
 // TODO: Create an array of questions for user input
 const questions = [
@@ -86,7 +118,7 @@ const questions = [
           }
         }
       },
-];
+],
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
