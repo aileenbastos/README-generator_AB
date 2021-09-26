@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const { writeFile, copyFile } = require('./utils/generateMarkdown.js');
 const inquirer = require('inquirer');
-const generatePage = require('./src/page-template');
+const generatePage = require('./utils/generateMarkdown');
 
 // TODO: Create an array of sections for user input
 (`
