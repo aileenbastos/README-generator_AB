@@ -1,15 +1,20 @@
 // TODO: Include packages needed for this application
-const { writeFile, copyFile } = require('./utils/generate-site.js');
+const { writeFile, copyFile } = require('./utils/generateMarkdown.js');
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
 
 // TODO: Create an array of sections for user input
+(`
+=================
+Create ReadMe
+=================
+`);
 const promptUser = () => {
     return inquirer.prompt([
       {
         type: 'input',
         name: 'projectTitle',
-        message: 'What is the title of your project? (Required)',
+        message: 'Provide a title for your project. (Required)',
         validate: projectInput => {
           if (projectInput) {
             return true;
@@ -79,7 +84,7 @@ const promptUser = () => {
           if (testsInput) {
             return true;
           } else {
-            console.log('You need to enter project testins instructions!');
+            console.log('You need to enter project testing instructions!');
             return false;
           }
         }
@@ -91,7 +96,6 @@ const promptUser = () => {
         choices: ['community-preferred', 'MIT', 'GNU GPLv3', 'GNU AGPLv3', 'GNU LGPLv3', 'Mozilla Public License', 'Apache License 2.0', 'Boost Software License 1.0', 'the Unilicense']
       },
 // TODO: Create an array of questions for user input
-const questions = [
     {
         type: 'input',
         name: 'github',
@@ -109,20 +113,26 @@ const questions = [
         type: 'input',
         name: 'email',
         message: 'What is your email address? (Required)',
-        validate: githubInput => {
-          if (githubInput) {
+        validate: emailInput => {
+          if (emailInput) {
             return true;
           } else {
             console.log('Please enter your email address!');
             return false;
           }
         }
-      },
-],
+      }
+    ])
+    then(data => {
+      return data;
+    })
+}
 
 // TODO: Create a function to write README file
-
 promptUser()
+.then(data => {
+  generatePage(data)
+})
   .then(promptProject)
   .then(portfolioData => {
     return generatePage(portfolioData);
